@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+<defs><linearGradient id="k" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8fc8e8"/><stop offset="1" stop-color="#f5cc78"/></linearGradient></defs>
+<rect width="1200" height="700" fill="url(#k)"/>
+<circle cx="180" cy="130" r="70" fill="#fff6d4" opacity=".8"/>
+<path d="M0 440 C210 360 390 420 560 450 C760 485 930 350 1200 390 L1200 700 L0 700Z" fill="#6d8668"/>
+<path d="M760 260 h150 v260 h-150z" fill="#d6b179"/><path d="M735 260 l100-110 100 110z" fill="#6f5c4b"/>
+<rect x="812" y="315" width="42" height="42" fill="#544234"/><path d="M833 210 v-55" stroke="#544234" stroke-width="12"/>
+<path d="M820 155 q13-25 26 0 q-13 18-26 0" fill="#d5a630"/>
+<g fill="#2a2523"><circle cx="430" cy="470" r="55"/><circle cx="560" cy="490" r="65"/><circle cx="690" cy="475" r="52"/>
+<polygon points="390,430 410,380 438,430"/><polygon points="438,430 465,380 482,432"/>
+<polygon points="505,445 535,390 563,445"/><polygon points="565,445 598,392 615,448"/>
+<polygon points="650,435 675,387 698,435"/><polygon points="696,435 725,390 742,438"/></g>
+<text x="70" y="110" font-family="Georgia,serif" font-size="52" fill="#40332c">Die Katzen vom Katzenbuckel</text>
+<text x="72" y="160" font-family="Arial,sans-serif" font-size="26" fill="#40332c">Abenteuer, Geheimnisse und drei Katzen, die nicht wegsehen</text>
+</svg>
