@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://mirawilden.de/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://mirawilden.de/buecher/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mirawilden.de/ironwood-falls/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mirawilden.de/ironwood-falls/heimkehr/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mirawilden.de/ironwood-falls/gluehende-herzen/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mirawilden.de/katzenbuckel/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mirawilden.de/die-katzen-vom-katzenbuckel/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mirawilden.de/mira-wilden/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mirawilden.de/kontakt/</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+</urlset>
