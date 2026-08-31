@@ -49,3 +49,44 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 .book-detail{display:grid;grid-template-columns:minmax(240px,380px) 1fr;gap:60px;align-items:start}
 .book-detail .cover{width:100%}
 @media(max-width:850px){.series-books{grid-template-columns:1fr}.book-detail{grid-template-columns:1fr}.book-detail .cover{max-width:420px}}
+
+
+/* Kompaktere Funktionsseiten: Impressum, Datenschutz, Kontakt */
+.functional-page .page-hero{
+  padding:44px 0 48px;
+}
+.functional-page .page-hero .breadcrumbs{
+  margin-bottom:10px;
+}
+.functional-page .page-hero h1{
+  margin-bottom:0;
+}
+.functional-page .section{
+  padding:50px 0 64px;
+}
+.functional-page .legal h2{
+  margin-top:1.35em;
+}
+.functional-page .legal h2:first-child{
+  margin-top:0;
+}
+.functional-page .legal h3{
+  margin-top:1.2em;
+}
+.functional-page .legal p{
+  margin-bottom:.9em;
+}
+.functional-page .split{
+  gap:48px;
+}
+@media(max-width:850px){
+  .functional-page .page-hero{
+    padding:34px 0 38px;
+  }
+  .functional-page .section{
+    padding:42px 0 52px;
+  }
+  .functional-page .legal h2{
+    margin-top:1.2em;
+  }
+}
