@@ -110,3 +110,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     padding-top:36px;
   }
 }
+
+.functional-page .legal{
+  max-width:none;
+}
