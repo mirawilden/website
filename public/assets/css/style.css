@@ -92,14 +92,9 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 }
 
 
-/* Serienseiten: Hero und Einführung zu einem einzigen kompakten Block zusammengeführt */
-.series-intro-hero{
-  padding:58px 0 62px;
-}
-.series-intro-hero .lead{
-  max-width:820px;
-  margin-bottom:16px;
-}
+
+
+/* Serienseiten: gleiche Grundausrichtung wie die Seite "Über Mira" */
 .series-intro-copy{
   max-width:850px;
   font-size:1.04rem;
@@ -107,16 +102,10 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   color:var(--muted);
   margin:0 0 22px;
 }
-.series-intro-hero .metadata{
-  margin-top:0;
-}
 .series-list-section{
   padding-top:46px;
 }
 @media(max-width:850px){
-  .series-intro-hero{
-    padding:42px 0 46px;
-  }
   .series-list-section{
     padding-top:36px;
   }
