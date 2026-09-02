@@ -135,3 +135,45 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     padding:34px 0 38px;
   }
 }
+
+
+/* Kontaktseite: große Plattform-Links statt Zwischenüberschrift "Online" */
+.contact-intro{
+  max-width:620px;
+  margin:0 0 24px;
+  color:var(--muted);
+  line-height:1.7;
+}
+.contact-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:0 0 34px;
+}
+.contact-links a{
+  display:inline-block;
+  padding:13px 18px;
+  border:1px solid var(--wine);
+  border-radius:2px;
+  color:var(--wine);
+  text-decoration:none;
+  font-weight:700;
+  font-size:1.02rem;
+  background:#fff;
+}
+.contact-links a:hover{
+  background:#f6e9e8;
+}
+.contact-mail{
+  font-size:1.08rem;
+  font-weight:700;
+}
+@media(max-width:620px){
+  .contact-links{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+  .contact-links a{
+    text-align:center;
+  }
+}
