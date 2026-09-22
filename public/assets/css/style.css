@@ -452,6 +452,19 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   --book-band-a:#738d9a;
   --book-band-b:#a86852;
   --book-band-c:#77474d;
+  --series-story-bg:#f4efe7;
+}
+.series-theme-katzenbuckel{
+  --book-band-a:#7f8b58;
+  --book-band-b:#a97848;
+  --book-band-c:#765148;
+  --series-story-bg:#f0eadf;
+}
+.series-theme-kinder{
+  --book-band-a:#6596a6;
+  --book-band-b:#718d7e;
+  --book-band-c:#8b765f;
+  --series-story-bg:#eaf0ed;
 }
 .series-prototype .series-prototype-hero{
   padding-bottom:30px;
@@ -550,7 +563,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   font-size:.92rem;
 }
 .series-story-section{
-  background:#f4efe7;
+  background:var(--series-story-bg,#f4efe7);
   padding:62px 0 72px;
 }
 .series-story{
