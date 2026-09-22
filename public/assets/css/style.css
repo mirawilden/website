@@ -452,13 +452,13 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   --book-band-a:#738d9a;
   --book-band-b:#a86852;
   --book-band-c:#77474d;
-  --series-story-bg:#f4efe7;
+  --series-story-bg:#e8eef0;
 }
 .series-theme-katzenbuckel{
   --book-band-a:#7f8b58;
   --book-band-b:#a97848;
   --book-band-c:#765148;
-  --series-story-bg:#f0eadf;
+  --series-story-bg:#e8ede2;
 }
 .series-theme-kinder{
   --book-band-a:#6596a6;
@@ -468,6 +468,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 }
 .series-prototype .series-prototype-hero{
   padding-bottom:30px;
+  background:var(--paper);
 }
 .series-prototype-separator p{
   max-width:1050px;
@@ -631,7 +632,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   --home-band-c:#7d454d;
 }
 .home-hero{
-  background:var(--cream);
+  background:var(--paper);
   padding:56px 0 60px;
 }
 .home-hero-grid{
@@ -821,7 +822,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   box-shadow:0 18px 42px rgba(0,0,0,.16);
 }
 .home-newsletter{
-  background:#f2ece3;
+  background:#eee5e7;
   padding:68px 0 76px;
 }
 .home-newsletter-grid{
@@ -943,7 +944,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   --about-band-c:#7d4a50;
 }
 .about-hero{
-  background:var(--cream);
+  background:var(--paper);
   padding:52px 0 58px;
 }
 .about-hero-grid{
@@ -1004,7 +1005,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   font:500 clamp(1.2rem,1.9vw,1.65rem)/1.35 Georgia,"Times New Roman",serif;
 }
 .about-personal{
-  background:#f4efe7;
+  background:#f0e6e7;
   padding:66px 0 72px;
 }
 .about-personal-grid{
@@ -1159,7 +1160,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   background:var(--paper);
 }
 .library-hero{
-  background:var(--cream);
+  background:var(--paper);
   padding:48px 0 52px;
   text-align:center;
 }
@@ -1183,16 +1184,16 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   padding:62px 0 70px;
 }
 .library-series-ironwood{
-  --library-accent:#7b5255;
-  --library-bg:#f6f1ea;
+  --library-accent:#5f7884;
+  --library-bg:#e9eff1;
 }
 .library-series-katzenbuckel{
-  --library-accent:#6e7757;
-  --library-bg:#f1eee4;
+  --library-accent:#667653;
+  --library-bg:#e8ede2;
 }
 .library-series-kinder{
-  --library-accent:#587f8c;
-  --library-bg:#edf2f1;
+  --library-accent:#537985;
+  --library-bg:#e7eef0;
 }
 .library-series-head{
   display:flex;
