@@ -934,3 +934,221 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     line-height:1.7;
   }
 }
+
+
+/* Editoriale Über-Mira-Seite 2026 */
+.about-editorial{
+  --about-band-a:#738d98;
+  --about-band-b:#a97457;
+  --about-band-c:#7d4a50;
+}
+.about-hero{
+  background:var(--cream);
+  padding:52px 0 58px;
+}
+.about-hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(340px,.78fr);
+  gap:76px;
+  align-items:center;
+}
+.about-hero-copy{
+  max-width:760px;
+}
+.about-hero h1{
+  font-size:clamp(3.4rem,6vw,5.8rem);
+  margin-bottom:16px;
+}
+.about-kicker{
+  font:1.48rem/1.4 Georgia,"Times New Roman",serif;
+  color:var(--wine);
+  margin-bottom:18px;
+}
+.about-hero .lead{
+  color:#4e4741;
+  line-height:1.72;
+}
+.about-hero-image{
+  width:100%;
+  max-height:560px;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  box-shadow:0 20px 46px rgba(47,37,29,.12);
+}
+.about-intro{
+  padding:64px 0 70px;
+  background:var(--paper);
+}
+.about-prose{
+  max-width:900px;
+}
+.about-prose p{
+  font-size:1.1rem;
+  line-height:1.78;
+  color:#49423d;
+}
+.about-quote{
+  font:1.55rem/1.45 Georgia,"Times New Roman",serif!important;
+  color:var(--wine)!important;
+  margin:1.15em 0 1.3em!important;
+}
+.about-statement{
+  padding:30px 0 32px;
+  color:#fff;
+  background:linear-gradient(90deg,var(--about-band-a) 0%,var(--about-band-b) 50%,var(--about-band-c) 100%);
+}
+.about-statement p{
+  max-width:1080px;
+  margin:0 auto;
+  text-align:center;
+  font:500 clamp(1.2rem,1.9vw,1.65rem)/1.35 Georgia,"Times New Roman",serif;
+}
+.about-personal{
+  background:#f4efe7;
+  padding:66px 0 72px;
+}
+.about-personal-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(330px,.72fr);
+  gap:76px;
+  align-items:center;
+}
+.about-personal-copy{
+  max-width:760px;
+}
+.about-personal-copy p:not(.eyebrow){
+  font-size:1.05rem;
+  line-height:1.76;
+  color:#4d4640;
+}
+.about-personal-image{
+  width:100%;
+  max-height:500px;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  box-shadow:0 18px 42px rgba(47,37,29,.12);
+}
+.about-details{
+  padding:68px 0 76px;
+  background:var(--paper);
+}
+.about-details-head{
+  max-width:850px;
+  margin:0 auto 42px;
+  text-align:center;
+}
+.about-detail-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0 70px;
+  max-width:1050px;
+  margin:0 auto;
+}
+.about-detail{
+  padding:28px 0 30px;
+  border-top:1px solid var(--line);
+}
+.about-detail h3{
+  font-size:1.55rem;
+  margin-bottom:10px;
+}
+.about-detail p{
+  color:#514943;
+  line-height:1.72;
+  margin-bottom:0;
+}
+.about-writing{
+  background:var(--olive-dark);
+  color:#fff;
+  padding:68px 0 76px;
+}
+.about-writing-inner{
+  max-width:900px;
+  text-align:center;
+}
+.about-writing .eyebrow{
+  color:#ead8c5;
+}
+.about-writing h2{
+  margin-bottom:26px;
+}
+.about-writing p:not(.eyebrow):not(.about-quote){
+  font-size:1.08rem;
+  line-height:1.75;
+  color:#f2eee8;
+}
+.about-writing .about-quote{
+  color:#fff!important;
+}
+.about-actions{
+  margin-top:28px;
+}
+.about-writing .button{
+  background:#fff;
+  color:var(--olive-dark);
+}
+.about-writing .button:hover{
+  background:#f2ede5;
+}
+.about-writing .button-outline{
+  border-color:#fff;
+  color:#fff;
+}
+.about-writing .button-outline:hover{
+  background:rgba(255,255,255,.1);
+}
+@media(max-width:850px){
+  .about-hero{
+    padding:40px 0 46px;
+  }
+  .about-hero-grid,
+  .about-personal-grid{
+    grid-template-columns:1fr;
+    gap:34px;
+  }
+  .about-hero h1{
+    font-size:clamp(3rem,13vw,4.5rem);
+  }
+  .about-hero-image,
+  .about-personal-image{
+    max-width:560px;
+    max-height:none;
+  }
+  .about-intro{
+    padding:48px 0 52px;
+  }
+  .about-prose p{
+    font-size:1rem;
+    line-height:1.74;
+  }
+  .about-statement{
+    padding:24px 0 26px;
+  }
+  .about-statement p{
+    text-align:left;
+    font-size:clamp(1.15rem,5.2vw,1.5rem);
+  }
+  .about-personal{
+    padding:50px 0 56px;
+  }
+  .about-details{
+    padding:50px 0 56px;
+  }
+  .about-details-head{
+    text-align:left;
+    margin-bottom:24px;
+  }
+  .about-detail-grid{
+    grid-template-columns:1fr;
+  }
+  .about-writing{
+    padding:52px 0 58px;
+  }
+  .about-writing-inner{
+    text-align:left;
+  }
+  .about-actions{
+    display:flex;
+    flex-wrap:wrap;
+  }
+}
