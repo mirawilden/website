@@ -184,35 +184,53 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 @media(max-width:850px){.book-newsletter{padding:0 0 60px}.book-newsletter-panel{padding:28px}}
 
 
-/* Glühende Herzen Musterseite: editoriale Buchdarstellung */
+/* Glühende Herzen Musterseite: Titel, Tropes, Separator, Cover, Text */
 .book-prototype .book-prototype-hero{
-  padding:58px 0 64px;
+  padding:58px 0 34px;
   text-align:center;
 }
 .book-prototype .book-prototype-hero .wrap{
-  max-width:940px;
+  max-width:980px;
 }
 .book-prototype .book-prototype-hero .breadcrumbs{
   font-size:.76rem;
-  opacity:.55;
-  margin-bottom:24px;
+  opacity:.52;
+  margin-bottom:22px;
 }
 .book-prototype .book-prototype-hero .eyebrow{
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 .book-prototype .book-prototype-hero h1{
-  font-size:clamp(3rem,5vw,4.5rem);
-  margin-bottom:14px;
+  font-size:clamp(3.35rem,6vw,5.35rem);
+  margin-bottom:16px;
 }
-.book-prototype .book-prototype-hero .lead{
-  max-width:680px;
-  margin:0 auto;
+.book-prototype-tags{
   color:var(--muted);
-  line-height:1.65;
+  font-size:.82rem;
+  letter-spacing:.045em;
+}
+.book-prototype-tags-top{
+  margin:0;
+  text-transform:uppercase;
+}
+.book-prototype-separator{
+  background:linear-gradient(90deg,#b8894e 0%,#a75547 48%,#7d3d43 100%);
+  color:#fff;
+  padding:28px 0 30px;
+}
+.book-prototype-separator .wrap{
+  max-width:1180px;
+}
+.book-prototype-separator p{
+  max-width:1020px;
+  margin:0 auto;
+  text-align:center;
+  font:500 clamp(1.65rem,3vw,2.65rem)/1.18 Georgia,"Times New Roman",serif;
+  letter-spacing:.005em;
 }
 .book-prototype-stage{
   background:var(--paper);
-  padding:68px 0 84px;
+  padding:72px 0 88px;
 }
 .book-prototype-cover{
   display:flex;
@@ -220,68 +238,54 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   padding:0 0 72px;
 }
 .book-prototype-cover .cover{
-  width:min(390px,78vw);
+  width:min(410px,80vw);
   max-width:none;
   margin:0;
   box-shadow:0 22px 52px rgba(47,37,29,.13);
 }
 .book-prototype-copy{
-  max-width:980px;
+  max-width:1040px;
   margin:0 auto;
 }
-.book-prototype-copy h2{
-  max-width:920px;
-  margin:0 auto 34px;
-  text-align:center;
-  font-size:clamp(2rem,3.15vw,3.15rem);
-  line-height:1.1;
-}
 .book-prototype-body{
-  max-width:900px;
+  max-width:940px;
   margin:0 auto;
 }
 .book-prototype-body p{
-  font-size:1.08rem;
-  line-height:1.78;
+  font-size:1.12rem;
+  line-height:1.82;
   color:#49423d;
-  margin-bottom:1.35em;
+  margin-bottom:1.4em;
 }
 .book-prototype-actions{
   display:flex;
   justify-content:center;
   gap:12px;
   flex-wrap:wrap;
-  margin:34px 0 22px;
-}
-.book-prototype-tags{
-  text-align:center;
-  color:var(--muted);
-  font-size:.82rem;
-  letter-spacing:.03em;
-  margin:0 auto 44px;
+  margin:36px 0 48px;
 }
 .book-prototype .reader-fit{
-  max-width:900px;
+  max-width:940px;
   margin:0 auto;
-  padding:34px 0 0;
+  padding:38px 0 0;
   background:transparent;
   border-left:0;
   border-top:1px solid var(--line);
 }
 .book-prototype .reader-fit h3{
   text-align:center;
-  font-size:1.25rem;
-  margin-bottom:22px;
+  font-size:1.3rem;
+  margin-bottom:24px;
 }
 .book-prototype .reader-fit ul{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px 54px;
+  gap:10px 58px;
   margin:0;
   padding-left:1.15em;
   color:var(--muted);
-  font-size:.98rem;
-  line-height:1.6;
+  font-size:1rem;
+  line-height:1.65;
 }
 .book-prototype .reader-fit li{
   margin:0;
@@ -291,7 +295,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   padding:64px 0 76px;
 }
 .book-prototype .book-newsletter-panel{
-  max-width:980px;
+  max-width:1040px;
   padding:0;
   border:0;
   box-shadow:none;
@@ -305,28 +309,34 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 }
 @media(max-width:850px){
   .book-prototype .book-prototype-hero{
-    padding:40px 0 46px;
+    padding:40px 0 28px;
+  }
+  .book-prototype .book-prototype-hero h1{
+    font-size:clamp(3rem,14vw,4.35rem);
+  }
+  .book-prototype-tags-top{
+    line-height:1.7;
+  }
+  .book-prototype-separator{
+    padding:24px 0 26px;
+  }
+  .book-prototype-separator p{
+    text-align:left;
+    font-size:clamp(1.5rem,7vw,2.2rem);
   }
   .book-prototype-stage{
-    padding:44px 0 58px;
+    padding:48px 0 60px;
   }
   .book-prototype-cover{
-    padding-bottom:48px;
-  }
-  .book-prototype-copy h2{
-    text-align:left;
-    font-size:clamp(1.9rem,8vw,2.55rem);
-    margin-bottom:26px;
+    padding-bottom:50px;
   }
   .book-prototype-body p{
     font-size:1rem;
+    line-height:1.75;
   }
   .book-prototype-actions{
     justify-content:flex-start;
-  }
-  .book-prototype-tags{
-    text-align:left;
-    line-height:1.7;
+    margin-bottom:40px;
   }
   .book-prototype .reader-fit h3{
     text-align:left;
