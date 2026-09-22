@@ -184,110 +184,114 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 @media(max-width:850px){.book-newsletter{padding:0 0 60px}.book-newsletter-panel{padding:28px}}
 
 
-/* Glühende Herzen Musterseite: ruhige, kuratierte Buchdarstellung */
+/* Glühende Herzen Musterseite: editoriale Buchdarstellung */
 .book-prototype .book-prototype-hero{
-  padding:56px 0 60px;
+  padding:58px 0 64px;
   text-align:center;
 }
 .book-prototype .book-prototype-hero .wrap{
-  max-width:900px;
+  max-width:940px;
 }
 .book-prototype .book-prototype-hero .breadcrumbs{
   font-size:.76rem;
-  opacity:.62;
+  opacity:.55;
   margin-bottom:24px;
 }
 .book-prototype .book-prototype-hero .eyebrow{
   margin-bottom:12px;
 }
 .book-prototype .book-prototype-hero h1{
-  font-size:clamp(3rem,5vw,4.4rem);
+  font-size:clamp(3rem,5vw,4.5rem);
   margin-bottom:14px;
 }
 .book-prototype .book-prototype-hero .lead{
-  max-width:650px;
+  max-width:680px;
   margin:0 auto;
   color:var(--muted);
   line-height:1.65;
 }
 .book-prototype-stage{
-  background:#f3eee6;
-  padding:56px 0 72px;
-}
-.book-prototype-card{
-  max-width:1160px;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:minmax(260px,330px) minmax(0,1fr);
-  gap:64px;
-  align-items:start;
   background:var(--paper);
-  border:1px solid var(--line);
-  padding:52px 56px;
-  box-shadow:0 10px 30px rgba(47,37,29,.045);
+  padding:68px 0 84px;
 }
-.book-prototype-side .cover{
-  width:100%;
-  max-width:330px;
+.book-prototype-cover{
+  display:flex;
+  justify-content:center;
+  padding:0 0 72px;
+}
+.book-prototype-cover .cover{
+  width:min(390px,78vw);
+  max-width:none;
   margin:0;
+  box-shadow:0 22px 52px rgba(47,37,29,.13);
+}
+.book-prototype-copy{
+  max-width:980px;
+  margin:0 auto;
+}
+.book-prototype-copy h2{
+  max-width:920px;
+  margin:0 auto 34px;
+  text-align:center;
+  font-size:clamp(2rem,3.15vw,3.15rem);
+  line-height:1.1;
+}
+.book-prototype-body{
+  max-width:900px;
+  margin:0 auto;
+}
+.book-prototype-body p{
+  font-size:1.08rem;
+  line-height:1.78;
+  color:#49423d;
+  margin-bottom:1.35em;
+}
+.book-prototype-actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:34px 0 22px;
+}
+.book-prototype-tags{
+  text-align:center;
+  color:var(--muted);
+  font-size:.82rem;
+  letter-spacing:.03em;
+  margin:0 auto 44px;
 }
 .book-prototype .reader-fit{
-  margin:24px 0 0;
-  padding:18px 0 0;
+  max-width:900px;
+  margin:0 auto;
+  padding:34px 0 0;
   background:transparent;
   border-left:0;
   border-top:1px solid var(--line);
 }
 .book-prototype .reader-fit h3{
-  font-size:1.08rem;
-  margin-bottom:.65em;
+  text-align:center;
+  font-size:1.25rem;
+  margin-bottom:22px;
 }
 .book-prototype .reader-fit ul{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px 54px;
+  margin:0;
   padding-left:1.15em;
-  font-size:.94rem;
-  line-height:1.55;
+  color:var(--muted);
+  font-size:.98rem;
+  line-height:1.6;
 }
 .book-prototype .reader-fit li{
-  margin:.34em 0;
-}
-.book-prototype-copy{
-  max-width:680px;
-  padding-top:6px;
-}
-.book-prototype-copy h2{
-  font-size:clamp(1.9rem,2.6vw,2.45rem);
-  line-height:1.12;
-  margin-bottom:1em;
-}
-.book-prototype-copy>p{
-  font-size:1.03rem;
-  line-height:1.72;
-  color:#49423d;
-  margin-bottom:1.25em;
-}
-.book-prototype-actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin:28px 0 22px;
-}
-.book-prototype .metadata{
   margin:0;
-  gap:8px;
-}
-.book-prototype .pill{
-  background:transparent;
-  border:1px solid var(--line);
-  color:var(--muted);
-  padding:4px 9px;
-  font-size:.74rem;
 }
 .book-prototype .book-newsletter{
-  background:var(--paper);
+  background:#f7f2ea;
   padding:64px 0 76px;
 }
 .book-prototype .book-newsletter-panel{
-  max-width:1160px;
+  max-width:980px;
   padding:0;
   border:0;
   box-shadow:none;
@@ -295,33 +299,41 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   gap:72px;
 }
 .book-prototype .newsletter-signup{
-  background:#f7f2ea;
-  padding:26px;
+  background:transparent;
+  border:0;
+  padding:0;
 }
 @media(max-width:850px){
   .book-prototype .book-prototype-hero{
-    padding:40px 0 44px;
+    padding:40px 0 46px;
   }
   .book-prototype-stage{
-    padding:32px 0 48px;
+    padding:44px 0 58px;
   }
-  .book-prototype-card{
+  .book-prototype-cover{
+    padding-bottom:48px;
+  }
+  .book-prototype-copy h2{
+    text-align:left;
+    font-size:clamp(1.9rem,8vw,2.55rem);
+    margin-bottom:26px;
+  }
+  .book-prototype-body p{
+    font-size:1rem;
+  }
+  .book-prototype-actions{
+    justify-content:flex-start;
+  }
+  .book-prototype-tags{
+    text-align:left;
+    line-height:1.7;
+  }
+  .book-prototype .reader-fit h3{
+    text-align:left;
+  }
+  .book-prototype .reader-fit ul{
     grid-template-columns:1fr;
-    gap:38px;
-    padding:28px;
-  }
-  .book-prototype-side{
-    max-width:420px;
-    margin:0 auto;
-    width:100%;
-  }
-  .book-prototype-side .cover{
-    max-width:420px;
-    margin:0 auto;
-  }
-  .book-prototype-copy{
-    max-width:none;
-    padding-top:0;
+    gap:8px;
   }
   .book-prototype .book-newsletter{
     padding:48px 0 58px;
