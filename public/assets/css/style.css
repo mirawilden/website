@@ -206,8 +206,8 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 }
 .book-prototype-tags{
   color:var(--muted);
-  font-size:.82rem;
-  letter-spacing:.045em;
+  font-size:.96rem;
+  letter-spacing:.055em;
 }
 .book-prototype-tags-top{
   margin:0;
@@ -225,7 +225,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   max-width:1020px;
   margin:0 auto;
   text-align:center;
-  font:500 clamp(1.65rem,3vw,2.65rem)/1.18 Georgia,"Times New Roman",serif;
+  font:500 clamp(1.35rem,2.35vw,2.1rem)/1.22 Georgia,"Times New Roman",serif;
   letter-spacing:.005em;
 }
 .book-prototype-stage{
@@ -267,10 +267,10 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 .book-prototype .reader-fit{
   max-width:940px;
   margin:0 auto;
-  padding:38px 0 0;
+  padding:18px 0 0;
   background:transparent;
   border-left:0;
-  border-top:1px solid var(--line);
+  border-top:0;
 }
 .book-prototype .reader-fit h3{
   text-align:center;
@@ -322,7 +322,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   }
   .book-prototype-separator p{
     text-align:left;
-    font-size:clamp(1.5rem,7vw,2.2rem);
+    font-size:clamp(1.3rem,6vw,1.85rem);
   }
   .book-prototype-stage{
     padding:48px 0 60px;
