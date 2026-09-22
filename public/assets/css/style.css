@@ -184,7 +184,87 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 @media(max-width:850px){.book-newsletter{padding:0 0 60px}.book-newsletter-panel{padding:28px}}
 
 
-/* Glühende Herzen Musterseite: Titel, Tropes, Separator, Cover, Text */
+/* Einheitlicher Buchseiten-Standard: Titel, Tropes, Farbbandaussage, Cover, Text, Leserband */
+.book-prototype{
+  --book-band-a:#b8894e;
+  --book-band-b:#a75547;
+  --book-band-c:#7d3d43;
+  --book-reader-a:#f2e4cc;
+  --book-reader-b:#ead2cf;
+  --book-reader-c:#e2d7dc;
+  --book-news-bg:#f7f2ea;
+}
+.book-theme-heimkehr{
+  --book-band-a:#6f9caf;
+  --book-band-b:#b46d5e;
+  --book-band-c:#8d4247;
+  --book-reader-a:#e2edf0;
+  --book-reader-b:#f1e4de;
+  --book-reader-c:#ead8d8;
+}
+.book-theme-unter{
+  --book-band-a:#708c99;
+  --book-band-b:#566f79;
+  --book-band-c:#414f59;
+  --book-reader-a:#e3ebed;
+  --book-reader-b:#dde5e6;
+  --book-reader-c:#e7e1df;
+  --book-news-bg:#eef1f1;
+}
+.book-theme-kb1{
+  --book-band-a:#7d8d5e;
+  --book-band-b:#a77948;
+  --book-band-c:#7c5041;
+  --book-reader-a:#e6ead9;
+  --book-reader-b:#efe3cf;
+  --book-reader-c:#eadbd2;
+  --book-news-bg:#f2eee5;
+}
+.book-theme-kb2{
+  --book-band-a:#9a8b58;
+  --book-band-b:#aa704e;
+  --book-band-c:#76664e;
+  --book-reader-a:#ece8d5;
+  --book-reader-b:#efddd0;
+  --book-reader-c:#e2e3d4;
+  --book-news-bg:#f1eee5;
+}
+.book-theme-kb3{
+  --book-band-a:#d09a47;
+  --book-band-b:#aa6043;
+  --book-band-c:#70434a;
+  --book-reader-a:#f3e5c8;
+  --book-reader-b:#efd9ce;
+  --book-reader-c:#e4d5dc;
+  --book-news-bg:#f3ede5;
+}
+.book-theme-kid1{
+  --book-band-a:#789cac;
+  --book-band-b:#6e8d85;
+  --book-band-c:#596d73;
+  --book-reader-a:#e3edf0;
+  --book-reader-b:#e4ebe5;
+  --book-reader-c:#e9e3d8;
+  --book-news-bg:#eef2f0;
+}
+.book-theme-kid2{
+  --book-band-a:#4f91a7;
+  --book-band-b:#3f7f90;
+  --book-band-c:#a48762;
+  --book-reader-a:#dfeef2;
+  --book-reader-b:#dcebed;
+  --book-reader-c:#efe6d5;
+  --book-news-bg:#edf3f3;
+}
+.book-theme-kid3{
+  --book-band-a:#8c6b5f;
+  --book-band-b:#9f7653;
+  --book-band-c:#665a6c;
+  --book-reader-a:#ece2dd;
+  --book-reader-b:#efe3d7;
+  --book-reader-c:#e6dfe8;
+  --book-news-bg:#f1edee;
+}
 .book-prototype .book-prototype-hero{
   padding:38px 0 28px;
   text-align:center;
@@ -204,6 +284,12 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   font-size:clamp(2.9rem,5vw,4.55rem);
   margin-bottom:14px;
 }
+.book-prototype .book-prototype-hero h1.book-title-long{
+  font-size:clamp(2.35rem,4.2vw,3.7rem);
+  max-width:1100px;
+  margin-left:auto;
+  margin-right:auto;
+}
 .book-prototype-tags{
   color:var(--muted);
   font-size:1.04rem;
@@ -214,7 +300,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   text-transform:uppercase;
 }
 .book-prototype-separator{
-  background:linear-gradient(90deg,#b8894e 0%,#a75547 48%,#7d3d43 100%);
+  background:linear-gradient(90deg,var(--book-band-a) 0%,var(--book-band-b) 48%,var(--book-band-c) 100%);
   color:#fff;
   padding:28px 0 30px;
 }
@@ -269,7 +355,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   max-width:none;
   margin:18px 0 0;
   padding:30px 0 32px;
-  background:linear-gradient(90deg,#f2e4cc 0%,#ead2cf 52%,#e2d7dc 100%);
+  background:linear-gradient(90deg,var(--book-reader-a) 0%,var(--book-reader-b) 52%,var(--book-reader-c) 100%);
   border:0;
 }
 .book-prototype .reader-fit-inner{
@@ -295,7 +381,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   margin:0;
 }
 .book-prototype .book-newsletter{
-  background:#f7f2ea;
+  background:var(--book-news-bg);
   padding:64px 0 76px;
 }
 .book-prototype .book-newsletter-panel{
@@ -317,6 +403,9 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   }
   .book-prototype .book-prototype-hero h1{
     font-size:clamp(2.7rem,12vw,3.8rem);
+  }
+  .book-prototype .book-prototype-hero h1.book-title-long{
+    font-size:clamp(2.25rem,10vw,3.1rem);
   }
   .book-prototype-tags-top{
     line-height:1.7;
