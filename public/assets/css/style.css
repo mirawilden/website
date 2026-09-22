@@ -230,15 +230,15 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 }
 .book-prototype-stage{
   background:var(--paper);
-  padding:48px 0 0;
+  padding:36px 0 0;
 }
 .book-prototype-cover{
   display:flex;
   justify-content:center;
-  padding:0 0 44px;
+  padding:0 0 30px;
 }
 .book-prototype-cover .cover{
-  width:min(335px,72vw);
+  width:min(310px,70vw);
   max-width:none;
   margin:0;
   box-shadow:0 18px 44px rgba(47,37,29,.12);
@@ -248,21 +248,21 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   margin:0 auto;
 }
 .book-prototype-body{
-  max-width:940px;
+  max-width:900px;
   margin:0 auto;
 }
 .book-prototype-body p{
-  font-size:1.12rem;
-  line-height:1.82;
+  font-size:1.1rem;
+  line-height:1.72;
   color:#49423d;
-  margin-bottom:1.4em;
+  margin-bottom:1.25em;
 }
 .book-prototype-actions{
   display:flex;
   justify-content:center;
   gap:12px;
   flex-wrap:wrap;
-  margin:36px 0 48px;
+  margin:30px 0 34px;
 }
 .book-prototype .reader-fit{
   width:100%;
@@ -329,10 +329,10 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     font-size:clamp(1.15rem,5.4vw,1.55rem);
   }
   .book-prototype-stage{
-    padding:36px 0 0;
+    padding:30px 0 0;
   }
   .book-prototype-cover{
-    padding-bottom:36px;
+    padding-bottom:28px;
   }
   .book-prototype-body p{
     font-size:1rem;
