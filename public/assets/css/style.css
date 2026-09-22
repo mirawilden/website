@@ -186,7 +186,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 
 /* Glühende Herzen Musterseite: Titel, Tropes, Separator, Cover, Text */
 .book-prototype .book-prototype-hero{
-  padding:58px 0 34px;
+  padding:38px 0 28px;
   text-align:center;
 }
 .book-prototype .book-prototype-hero .wrap{
@@ -201,8 +201,8 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   margin-bottom:10px;
 }
 .book-prototype .book-prototype-hero h1{
-  font-size:clamp(3.35rem,6vw,5.35rem);
-  margin-bottom:16px;
+  font-size:clamp(2.9rem,5vw,4.55rem);
+  margin-bottom:14px;
 }
 .book-prototype-tags{
   color:var(--muted);
@@ -230,18 +230,18 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 }
 .book-prototype-stage{
   background:var(--paper);
-  padding:72px 0 0;
+  padding:48px 0 0;
 }
 .book-prototype-cover{
   display:flex;
   justify-content:center;
-  padding:0 0 72px;
+  padding:0 0 44px;
 }
 .book-prototype-cover .cover{
-  width:min(410px,80vw);
+  width:min(335px,72vw);
   max-width:none;
   margin:0;
-  box-shadow:0 22px 52px rgba(47,37,29,.13);
+  box-shadow:0 18px 44px rgba(47,37,29,.12);
 }
 .book-prototype-copy{
   max-width:1040px;
@@ -313,10 +313,10 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 }
 @media(max-width:850px){
   .book-prototype .book-prototype-hero{
-    padding:40px 0 28px;
+    padding:30px 0 24px;
   }
   .book-prototype .book-prototype-hero h1{
-    font-size:clamp(3rem,14vw,4.35rem);
+    font-size:clamp(2.7rem,12vw,3.8rem);
   }
   .book-prototype-tags-top{
     line-height:1.7;
@@ -329,10 +329,10 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     font-size:clamp(1.15rem,5.4vw,1.55rem);
   }
   .book-prototype-stage{
-    padding:48px 0 0;
+    padding:36px 0 0;
   }
   .book-prototype-cover{
-    padding-bottom:50px;
+    padding-bottom:36px;
   }
   .book-prototype-body p{
     font-size:1rem;
