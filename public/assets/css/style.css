@@ -206,7 +206,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 }
 .book-prototype-tags{
   color:var(--muted);
-  font-size:.96rem;
+  font-size:1.04rem;
   letter-spacing:.055em;
 }
 .book-prototype-tags-top{
