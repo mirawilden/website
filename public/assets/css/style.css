@@ -164,3 +164,15 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   .newsletter-panel{padding:22px}
   .newsletter-signup{padding:24px 20px}
 }
+
+
+/* Buchdetailseiten: emotionaler Einstieg, Leserorientierung und kompakter Newsletter */
+.book-emotion{font:1.28rem/1.5 Georgia,"Times New Roman",serif;color:var(--wine);margin:.25em 0 1.35em}
+.reader-fit{margin:26px 0 24px;padding:22px 24px;background:#faf5ea;border-left:4px solid var(--gold)}
+.reader-fit h3{font-size:1.25rem;margin:0 0 .7em}
+.reader-fit ul{margin:0;padding-left:1.25em;color:var(--muted)}
+.reader-fit li{margin:.3em 0}
+.button-note{font-size:.76em;font-weight:400;opacity:.88;margin-left:.35em}
+.book-newsletter{padding:0 0 82px}
+.book-newsletter-panel{padding:34px 38px;grid-template-columns:1.05fr .95fr}
+@media(max-width:850px){.book-newsletter{padding:0 0 60px}.book-newsletter-panel{padding:28px}}
