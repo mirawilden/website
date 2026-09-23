@@ -1715,3 +1715,18 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     grid-row:1;
   }
 }
+
+
+/* Mira: kleinere Bilder in Hero und Wendepunkte */
+@media(min-width:851px){
+  .about-hero-image{
+    width:84%;
+    max-height:470px;
+    justify-self:start;
+  }
+  .about-personal-image{
+    width:84%;
+    max-height:410px;
+    justify-self:end;
+  }
+}
