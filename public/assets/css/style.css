@@ -1699,3 +1699,19 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     max-height:none;
   }
 }
+
+
+/* Mira-Hero: Bild links */
+@media(min-width:851px){
+  .about-hero-grid{
+    grid-template-columns:minmax(340px,.78fr) minmax(0,1.05fr);
+  }
+  .about-hero-image{
+    grid-column:1;
+    grid-row:1;
+  }
+  .about-hero-copy{
+    grid-column:2;
+    grid-row:1;
+  }
+}
