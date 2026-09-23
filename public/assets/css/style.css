@@ -1642,3 +1642,60 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     padding-top:18px;
   }
 }
+
+
+/* Mira: vier Bildrollen 2026-09-23 */
+.about-details-layout{
+  display:grid;
+  grid-template-columns:minmax(280px,.68fr) minmax(0,1.32fr);
+  gap:64px;
+  align-items:start;
+  max-width:1180px;
+  margin:0 auto;
+}
+.about-details-image{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  box-shadow:0 18px 42px rgba(47,37,29,.12);
+}
+.about-details-layout .about-detail-grid{
+  max-width:none;
+  margin:0;
+}
+.about-writing-inner{
+  max-width:1180px;
+  text-align:left;
+}
+.about-writing-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(300px,.58fr);
+  gap:64px;
+  align-items:center;
+}
+.about-writing-copy{
+  max-width:760px;
+}
+.about-writing-image{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  max-height:430px;
+  box-shadow:0 18px 42px rgba(20,25,18,.2);
+}
+.about-writing .about-quote{
+  margin-left:0!important;
+  margin-right:0!important;
+}
+@media(max-width:850px){
+  .about-details-layout,
+  .about-writing-grid{
+    grid-template-columns:1fr;
+    gap:32px;
+  }
+  .about-details-image,
+  .about-writing-image{
+    max-width:520px;
+    max-height:none;
+  }
+}
