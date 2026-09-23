@@ -1624,3 +1624,21 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   .book-prototype-actions{margin:22px 0 28px}
   .book-prototype .reader-fit{padding:24px 0 26px}
 }
+
+
+/* Startseite: direkt vom Markenband in die Buchwelten */
+.home-worlds-direct{
+  padding-top:24px;
+}
+.home-worlds-direct > .home-world:first-child{
+  border-top:0;
+  padding-top:22px;
+}
+@media(max-width:850px){
+  .home-worlds-direct{
+    padding-top:18px;
+  }
+  .home-worlds-direct > .home-world:first-child{
+    padding-top:18px;
+  }
+}
