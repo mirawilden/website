@@ -44,7 +44,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 
 .series-books{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:34px}
 .series-book{background:#fff;border:1px solid var(--line);padding:20px;display:flex;flex-direction:column}
-.series-book img{width:100%;aspect-ratio:5/8;object-fit:cover;box-shadow:var(--shadow);margin-bottom:18px}
+.series-book img{width:100%;aspect-ratio:5/8;object-fit:contain;box-shadow:var(--shadow);margin-bottom:18px}
 .series-book .button-outline{margin-top:auto;text-align:center}
 .book-detail{display:grid;grid-template-columns:minmax(260px,360px) minmax(0,760px);justify-content:space-between;gap:64px;align-items:start}
 .book-detail-side{display:flex;flex-direction:column;gap:22px}
@@ -529,7 +529,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   display:block;
   width:100%;
   aspect-ratio:5/8;
-  object-fit:cover;
+  object-fit:contain;
   box-shadow:0 18px 42px rgba(47,37,29,.12);
   transition:transform .18s ease,box-shadow .18s ease;
 }
@@ -742,7 +742,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 .home-world-covers img{
   width:100%;
   aspect-ratio:5/8;
-  object-fit:cover;
+  object-fit:contain;
   box-shadow:0 16px 36px rgba(47,37,29,.13);
   transition:transform .18s ease,box-shadow .18s ease;
 }
@@ -1253,7 +1253,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 .library-cover-link img{
   width:100%;
   aspect-ratio:5/8;
-  object-fit:cover;
+  object-fit:contain;
   box-shadow:0 17px 40px rgba(47,37,29,.13);
   transition:transform .18s ease,box-shadow .18s ease;
 }
@@ -1413,7 +1413,7 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 .series-mini-cover img{
   width:100%;
   aspect-ratio:5/8;
-  object-fit:cover;
+  object-fit:contain;
   box-shadow:0 14px 32px rgba(47,37,29,.12);
   transition:transform .18s ease,box-shadow .18s ease;
 }
@@ -1729,4 +1729,13 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     max-height:410px;
     justify-self:end;
   }
+}
+
+
+/* Buchcover: Originalformat 1600x2560 = 5:8, ohne Beschnitt */
+.book-prototype-cover .cover,
+.book-detail .cover{
+  aspect-ratio:5/8;
+  height:auto;
+  object-fit:contain;
 }
