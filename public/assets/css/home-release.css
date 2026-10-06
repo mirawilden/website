@@ -1,0 +1,111 @@
+.home-hero-visual{
+  position:relative;
+  min-width:0;
+}
+
+.home-release-card{
+  position:absolute;
+  right:-30px;
+  bottom:28px;
+  width:min(360px,92%);
+  display:grid;
+  grid-template-columns:92px minmax(0,1fr);
+  gap:16px;
+  align-items:center;
+  padding:14px 16px 14px 14px;
+  background:rgba(255,253,248,.97);
+  border:1px solid rgba(222,212,198,.95);
+  box-shadow:0 20px 48px rgba(47,37,29,.22);
+  backdrop-filter:blur(10px);
+  z-index:3;
+}
+
+.home-release-cover-link{
+  display:block;
+  text-decoration:none;
+}
+
+.home-release-cover{
+  width:92px;
+  aspect-ratio:5/8;
+  object-fit:cover;
+  box-shadow:0 10px 24px rgba(47,37,29,.2);
+}
+
+.home-release-kicker{
+  margin:0 0 5px;
+  color:var(--wine);
+  font-size:.7rem;
+  line-height:1.2;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.home-release-title{
+  display:block;
+  margin:0 0 9px;
+  color:var(--ink);
+  font:600 1.16rem/1.16 Georgia,"Times New Roman",serif;
+  text-decoration:none;
+}
+
+.home-release-title:hover{
+  color:var(--wine);
+}
+
+.home-release-cta{
+  display:inline-block;
+  color:var(--wine);
+  font-size:.88rem;
+  line-height:1.25;
+  font-weight:800;
+  text-decoration:none;
+  border-bottom:1px solid currentColor;
+}
+
+.home-release-cta:hover{
+  color:var(--wine-dark);
+}
+
+@media(max-width:1100px){
+  .home-release-card{
+    right:-12px;
+    width:min(330px,94%);
+    grid-template-columns:78px minmax(0,1fr);
+  }
+  .home-release-cover{width:78px}
+  .home-release-title{font-size:1.05rem}
+}
+
+@media(max-width:850px){
+  .home-hero-visual{
+    max-width:560px;
+  }
+  .home-hero-visual .home-hero-image{
+    max-width:none;
+  }
+  .home-release-card{
+    left:18px;
+    right:18px;
+    bottom:18px;
+    width:auto;
+    grid-template-columns:82px minmax(0,1fr);
+  }
+  .home-release-cover{width:82px}
+}
+
+@media(max-width:480px){
+  .home-release-card{
+    left:12px;
+    right:12px;
+    bottom:12px;
+    grid-template-columns:68px minmax(0,1fr);
+    gap:12px;
+    padding:11px 12px 11px 11px;
+  }
+  .home-release-cover{width:68px}
+  .home-release-kicker{font-size:.62rem;letter-spacing:.13em}
+  .home-release-title{font-size:.95rem;margin-bottom:6px}
+  .home-release-cta{font-size:.8rem}
+}
