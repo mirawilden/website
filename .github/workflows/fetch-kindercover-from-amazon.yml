@@ -1,0 +1,128 @@
+name: Fetch current Kinderkatzen covers
+
+on:
+  push:
+    branches:
+      - cover-upload-20261012
+
+permissions:
+  contents: write
+
+jobs:
+  covers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image dependencies
+        run: pip install requests beautifulsoup4 pillow
+      - name: Fetch current Amazon covers and optimize
+        shell: python
+        run: |
+          import io, re, sys, urllib.parse
+          from pathlib import Path
+          import requests
+          from bs4 import BeautifulSoup
+          from PIL import Image
+
+          books = [
+              ("Die Glocke im Nebel", "public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp", 195000),
+              ("Die Spur der sieben Schläge", "public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp", 210000),
+              ("Die verschwundene Schulgeschichte", "public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp", 215000),
+          ]
+          headers = {
+              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131 Safari/537.36",
+              "Accept-Language": "de-DE,de;q=0.9,en;q=0.7",
+          }
+          session = requests.Session()
+          session.headers.update(headers)
+
+          def amazon_original(url):
+              # Strip Amazon's resizing/cropping directive from the filename.
+              return re.sub(r"\.\_[A-Z0-9_,+-]+_\.(jpg|jpeg|png)$", r".\1", url, flags=re.I)
+
+          def find_cover(title):
+              q = urllib.parse.quote_plus(f'"{title}" "Mira Wilden"')
+              url = f"https://www.amazon.de/s?k={q}"
+              r = session.get(url, timeout=30)
+              r.raise_for_status()
+              soup = BeautifulSoup(r.text, "html.parser")
+              candidates = []
+              for item in soup.select('[data-asin]'):
+                  asin = item.get('data-asin','').strip()
+                  if not asin:
+                      continue
+                  text = ' '.join(item.stripped_strings)
+                  if title.lower() not in text.lower() or 'mira wilden' not in text.lower():
+                      continue
+                  img = item.select_one('img.s-image') or item.select_one('img')
+                  if not img:
+                      continue
+                  urls = []
+                  srcset = img.get('srcset','')
+                  for token in srcset.split(','):
+                      u = token.strip().split(' ')[0]
+                      if u.startswith('http'):
+                          urls.append(u)
+                  src = img.get('src')
+                  if src:
+                      urls.append(src)
+                  for u in reversed(urls):
+                      candidates.append((asin, amazon_original(u)))
+              if not candidates:
+                  raise RuntimeError(f"Kein eindeutiger Amazon-Treffer für: {title}")
+              errors = []
+              for asin, imgurl in candidates:
+                  try:
+                      rr = session.get(imgurl, timeout=30)
+                      rr.raise_for_status()
+                      im = Image.open(io.BytesIO(rr.content)).convert('RGB')
+                      ratio = im.width / im.height
+                      if im.width >= 700 and 0.58 <= ratio <= 0.68:
+                          print(f"{title}: ASIN {asin}, source {im.width}x{im.height}, {imgurl}")
+                          return im
+                      errors.append(f"{asin}: {im.size}")
+                  except Exception as e:
+                      errors.append(f"{asin}: {e}")
+              raise RuntimeError(f"Kein brauchbares großes Cover für {title}: {errors}")
+
+          for title, outpath, target in books:
+              im = find_cover(title)
+              im.thumbnail((1200, 1920), Image.Resampling.LANCZOS)
+              # Preserve cover ratio and use exactly the site's standard cover canvas.
+              if im.size != (1200, 1920):
+                  im = im.resize((1200, 1920), Image.Resampling.LANCZOS)
+              best = None
+              for q in range(90, 49, -1):
+                  b = io.BytesIO()
+                  im.save(b, format='WEBP', quality=q, method=6)
+                  data = b.getvalue()
+                  if len(data) <= target:
+                      best = (q, data)
+                      break
+              if best is None:
+                  raise RuntimeError(f"Konnte Zielgröße für {title} nicht erreichen")
+              q, data = best
+              p = Path(outpath)
+              p.parent.mkdir(parents=True, exist_ok=True)
+              p.write_bytes(data)
+              print(f"{title}: output 1200x1920, q={q}, {len(data)} bytes")
+
+      - name: Commit optimized covers
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -rf .tmp-kindercover-upload
+          git rm --ignore-unmatch .github/workflows/fetch-kindercover-from-amazon.yml
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp
+          git add -A .tmp-kindercover-upload || true
+          git commit -m "Replace Kinderkatzen covers with optimized WebP files"
+          git push origin HEAD:cover-upload-20261012
