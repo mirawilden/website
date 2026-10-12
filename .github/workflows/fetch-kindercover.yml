@@ -1,0 +1,36 @@
+name: Fetch current Kinderkatzen covers
+
+on:
+  push:
+    branches:
+      - cover-upload-20261012
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-covers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch and optimize current Amazon covers
+        shell: bash
+        run: |
+          set -euo pipefail
+          pip install --quiet pillow requests beautifulsoup4
+          python .github/fetch_kindercover.py
+      - name: Commit covers
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp
+          git rm .github/workflows/fetch-kindercover.yml .github/fetch_kindercover.py
+          git commit -m "Replace Kinderkatzen covers with optimized current covers"
+          git push origin HEAD:cover-upload-20261012
