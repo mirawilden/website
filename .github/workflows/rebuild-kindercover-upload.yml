@@ -1,0 +1,42 @@
+name: Rebuild Kindercover upload
+
+on:
+  push:
+    branches:
+      - cover-upload-20261012
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Rebuild covers when upload is complete
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -f .tmp-kindercover-upload/READY ]; then
+            echo "Upload not complete yet."
+            exit 0
+          fi
+          mkdir -p public/assets/images
+          for n in band1 band2 band3; do
+            cat .tmp-kindercover-upload/${n}/part-* | base64 -d > /tmp/${n}.webp
+          done
+          echo "46b6377e9eb002bdaa36cc22c3815d62b1e1b3c4abe19ae814d1ddb553641ae4  /tmp/band1.webp" | sha256sum -c -
+          echo "914ab0213b95f297512067893924b0ca7a23ec2c0f3c6934dd52e4a1a2572da6  /tmp/band2.webp" | sha256sum -c -
+          echo "d5aa724fc372c4c8938cef115d512947eccaa81026f05e090e2590d03ecfb2ee  /tmp/band3.webp" | sha256sum -c -
+          cp /tmp/band1.webp public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp
+          cp /tmp/band2.webp public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp
+          cp /tmp/band3.webp public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/images/*.webp
+          git rm -r .tmp-kindercover-upload
+          git rm .github/workflows/rebuild-kindercover-upload.yml
+          git commit -m "Replace Kinderkatzen covers with optimized WebP files"
+          git push origin HEAD:cover-upload-20261012
