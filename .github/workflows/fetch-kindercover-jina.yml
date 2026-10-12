@@ -1,0 +1,104 @@
+name: Fetch Kinderkatzen covers via reader fallback
+
+on:
+  push:
+    branches:
+      - cover-upload-20261012
+
+permissions:
+  contents: write
+
+jobs:
+  covers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install requests pillow
+      - name: Fetch current Amazon images via reader and optimize
+        shell: python
+        run: |
+          import io, re, urllib.parse
+          from pathlib import Path
+          import requests
+          from PIL import Image
+
+          books = [
+              ("Die Glocke im Nebel", "public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp", 195000),
+              ("Die Spur der sieben Schläge", "public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp", 210000),
+              ("Die verschwundene Schulgeschichte", "public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp", 215000),
+          ]
+          s = requests.Session()
+          s.headers.update({'User-Agent':'Mozilla/5.0'})
+
+          def original(u):
+              u = u.replace('&amp;', '&')
+              return re.sub(r"\.\_[A-Z0-9_,+\-]+_\.(jpg|jpeg|png)(?:\?.*)?$", r".\1", u, flags=re.I)
+
+          def candidate_urls(title):
+              q = urllib.parse.quote_plus(f'"{title}" "Mira Wilden"')
+              urls = [
+                  f"https://r.jina.ai/http://www.amazon.de/s?k={q}",
+                  f"https://r.jina.ai/https://www.amazon.de/s?k={q}",
+              ]
+              allu=[]
+              for url in urls:
+                  r=s.get(url,timeout=45)
+                  if r.ok:
+                      text=r.text
+                      # Amazon CDN image URLs emitted by the reader.
+                      allu += re.findall(r'https?://(?:m\.media-amazon\.com|images-na\.ssl-images-amazon\.com)/images/I/[^\s)\]"<>]+', text)
+              # preserve order, drop duplicates and obvious tiny sprites
+              out=[]; seen=set()
+              for u in allu:
+                  u=original(u.rstrip('.,;'))
+                  if u not in seen:
+                      seen.add(u); out.append(u)
+              return out
+
+          for title,outpath,target in books:
+              chosen=None
+              errors=[]
+              for u in candidate_urls(title):
+                  try:
+                      r=s.get(u,timeout=30); r.raise_for_status()
+                      im=Image.open(io.BytesIO(r.content)).convert('RGB')
+                      ratio=im.width/im.height
+                      if im.width>=700 and im.height>=1000 and 0.58<=ratio<=0.68:
+                          chosen=im
+                          print(f"{title}: source {im.width}x{im.height} {u}")
+                          break
+                  except Exception as e:
+                      errors.append(str(e))
+              if chosen is None:
+                  raise RuntimeError(f"Kein großes Amazon-Cover gefunden für {title}; {errors[:3]}")
+              im=chosen.resize((1200,1920), Image.Resampling.LANCZOS)
+              best=None
+              for q in range(90,49,-1):
+                  b=io.BytesIO(); im.save(b,'WEBP',quality=q,method=6)
+                  if len(b.getvalue())<=target:
+                      best=(q,b.getvalue()); break
+              if best is None: raise RuntimeError(f"Zielgröße nicht erreichbar: {title}")
+              q,data=best
+              p=Path(outpath); p.parent.mkdir(parents=True,exist_ok=True); p.write_bytes(data)
+              print(f"{title}: output 1200x1920 q={q} {len(data)} bytes")
+
+      - name: Commit optimized covers to upload branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -rf .tmp-kindercover-upload
+          git rm --ignore-unmatch .github/workflows/fetch-kindercover-jina.yml
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp
+          git add -A .tmp-kindercover-upload || true
+          git commit -m "Replace Kinderkatzen covers with optimized WebP files"
+          git push origin HEAD:cover-upload-20261012
