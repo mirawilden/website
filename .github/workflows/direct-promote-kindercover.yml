@@ -1,0 +1,148 @@
+name: Direct verified Kinderkatzen cover promotion
+
+on:
+  push:
+    branches:
+      - cover-upload-20261012
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 pillow
+      - name: Resolve exact Amazon products, fetch large covers, optimize
+        shell: python
+        run: |
+          import io, re, urllib.parse
+          from pathlib import Path
+          import requests
+          from bs4 import BeautifulSoup
+          from PIL import Image
+
+          books = [
+              ("Die Glocke im Nebel", "band1.webp", 195000),
+              ("Die Spur der sieben Schläge", "band2.webp", 210000),
+              ("Die verschwundene Schulgeschichte", "band3.webp", 215000),
+          ]
+          outdir = Path('/tmp/kindercover-ready'); outdir.mkdir(exist_ok=True)
+          s = requests.Session(); s.headers.update({
+              'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131 Safari/537.36',
+              'Accept-Language':'de-DE,de;q=0.9,en;q=0.7'
+          })
+
+          def normalize_img(u):
+              u=u.replace('&amp;','&').rstrip('.,;')
+              return re.sub(r"\.\_[A-Z0-9_,+\-]+_\.(jpg|jpeg|png)(?:\?.*)?$", r".\1", u, flags=re.I)
+
+          def asins_from_direct(title):
+              q=urllib.parse.quote_plus(f'"{title}" "Mira Wilden"')
+              r=s.get(f'https://www.amazon.de/s?k={q}',timeout=30)
+              out=[]
+              if r.ok:
+                  soup=BeautifulSoup(r.text,'html.parser')
+                  for item in soup.select('[data-asin]'):
+                      asin=item.get('data-asin','').strip()
+                      text=' '.join(item.stripped_strings).lower()
+                      if asin and title.lower() in text and 'mira wilden' in text:
+                          out.append(asin)
+              return out
+
+          def asins_from_reader(title):
+              q=urllib.parse.quote_plus(f'"{title}" "Mira Wilden"')
+              out=[]
+              for prefix in ('http://','https://'):
+                  r=s.get(f'https://r.jina.ai/{prefix}www.amazon.de/s?k={q}',timeout=45)
+                  if not r.ok: continue
+                  text=r.text
+                  # all ASINs linked by the search result; product page validation below makes this safe
+                  out += re.findall(r'amazon\.de/[^\s)\]]*?/dp/([A-Z0-9]{10})', text, flags=re.I)
+                  out += re.findall(r'amazon\.de/dp/([A-Z0-9]{10})', text, flags=re.I)
+              seen=[]
+              for x in out:
+                  x=x.upper()
+                  if x not in seen: seen.append(x)
+              return seen
+
+          def product_reader(asin):
+              for prefix in ('http://','https://'):
+                  r=s.get(f'https://r.jina.ai/{prefix}www.amazon.de/dp/{asin}',timeout=45)
+                  if r.ok and len(r.text)>500:
+                      return r.text
+              return ''
+
+          def product_direct(asin):
+              r=s.get(f'https://www.amazon.de/dp/{asin}',timeout=30)
+              return r.text if r.ok else ''
+
+          def image_urls(text):
+              urls=re.findall(r'https?://(?:m\.media-amazon\.com|images-na\.ssl-images-amazon\.com)/images/I/[^\s)\]"<>]+', text)
+              seen=[]
+              for u in urls:
+                  u=normalize_img(u)
+                  if u not in seen: seen.append(u)
+              return seen
+
+          def resolve_cover(title):
+              asins=[]
+              for a in asins_from_direct(title)+asins_from_reader(title):
+                  if a not in asins: asins.append(a)
+              if not asins:
+                  raise RuntimeError(f'Keine ASIN gefunden: {title}')
+              for asin in asins[:12]:
+                  texts=[product_reader(asin), product_direct(asin)]
+                  combined='\n'.join(texts)
+                  low=combined.lower()
+                  if title.lower() not in low or 'mira wilden' not in low:
+                      continue
+                  for text in texts:
+                      for u in image_urls(text):
+                          try:
+                              rr=s.get(u,timeout=30); rr.raise_for_status()
+                              im=Image.open(io.BytesIO(rr.content)).convert('RGB')
+                              ratio=im.width/im.height
+                              if im.width>=700 and im.height>=1000 and 0.58<=ratio<=0.68:
+                                  print(f'{title}: verified ASIN {asin}, source {im.width}x{im.height}, {u}')
+                                  return im
+                          except Exception:
+                              pass
+              raise RuntimeError(f'Kein verifiziertes großes Cover gefunden: {title}; ASINs={asins[:12]}')
+
+          for title,name,target in books:
+              im=resolve_cover(title).resize((1200,1920), Image.Resampling.LANCZOS)
+              best=None
+              for q in range(90,49,-1):
+                  b=io.BytesIO(); im.save(b,'WEBP',quality=q,method=6)
+                  data=b.getvalue()
+                  if len(data)<=target:
+                      best=(q,data); break
+              if best is None: raise RuntimeError(f'Zielgröße nicht erreichbar: {title}')
+              q,data=best; (outdir/name).write_bytes(data)
+              with Image.open(outdir/name) as chk:
+                  assert chk.size==(1200,1920) and chk.format=='WEBP'
+              assert 100000 <= len(data) <= 400000
+              print(f'{title}: READY q={q}, {len(data)} bytes')
+      - name: Promote only the three verified covers onto latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout -B cover-promote-main origin/main
+          cp /tmp/kindercover-ready/band1.webp public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp
+          cp /tmp/kindercover-ready/band2.webp public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp
+          cp /tmp/kindercover-ready/band3.webp public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp
+          git commit -m "Replace Kinderkatzen covers with optimized WebP files"
+          git push origin HEAD:main
