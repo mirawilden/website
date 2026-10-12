@@ -1,0 +1,70 @@
+name: Promote verified Kinderkatzen covers to main
+
+on:
+  push:
+    branches:
+      - cover-upload-20261012
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate optimized covers
+        shell: bash
+        run: |
+          set -euo pipefail
+          pip -q install pillow
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          paths = [
+              Path('public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp'),
+              Path('public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp'),
+              Path('public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp'),
+          ]
+          for p in paths:
+              size = p.stat().st_size
+              if not (100_000 <= size <= 400_000):
+                  raise SystemExit(f'{p}: unexpected size {size}; not promoting')
+              with Image.open(p) as im:
+                  if im.size != (1200, 1920):
+                      raise SystemExit(f'{p}: unexpected dimensions {im.size}; not promoting')
+                  if im.format != 'WEBP':
+                      raise SystemExit(f'{p}: expected WEBP, got {im.format}')
+              print(f'OK {p}: {size} bytes, 1200x1920')
+          PY
+      - name: Commit only the three verified covers onto current main
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/kindercover-promote
+          cp public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp /tmp/kindercover-promote/band1.webp
+          cp public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp /tmp/kindercover-promote/band2.webp
+          cp public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp /tmp/kindercover-promote/band3.webp
+
+          git fetch origin main
+          git checkout -B promote-main origin/main
+          cp /tmp/kindercover-promote/band1.webp public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp
+          cp /tmp/kindercover-promote/band2.webp public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp
+          cp /tmp/kindercover-promote/band3.webp public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp
+          git add public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp
+          if git diff --cached --quiet; then
+            echo 'main already has these covers'
+            exit 0
+          fi
+          git commit -m "Replace Kinderkatzen covers with optimized WebP files"
+          git push origin HEAD:main
