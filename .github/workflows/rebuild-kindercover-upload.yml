@@ -27,9 +27,9 @@ jobs:
           for n in band1 band2 band3; do
             cat .tmp-kindercover-upload/${n}/part-* | base64 -d > /tmp/${n}.webp
           done
-          echo "46b6377e9eb002bdaa36cc22c3815d62b1e1b3c4abe19ae814d1ddb553641ae4  /tmp/band1.webp" | sha256sum -c -
-          echo "914ab0213b95f297512067893924b0ca7a23ec2c0f3c6934dd52e4a1a2572da6  /tmp/band2.webp" | sha256sum -c -
-          echo "d5aa724fc372c4c8938cef115d512947eccaa81026f05e090e2590d03ecfb2ee  /tmp/band3.webp" | sha256sum -c -
+          echo "435817f37ad9a54cc50b732df54c7c79949e6a1225f1871ec6eb952292d0f028  /tmp/band1.webp" | sha256sum -c -
+          echo "172440b822f62bfc02e38b790dfd38030894defda569129f7be1c8ef4c1ca6f4  /tmp/band2.webp" | sha256sum -c -
+          echo "c48c148932cfd386b948b490eb365de8c68bac10e10e8fc2e9b9203c27779167  /tmp/band3.webp" | sha256sum -c -
           cp /tmp/band1.webp public/assets/images/die-katzen-vom-katzenbuckel-die-glocke-im-nebel.webp
           cp /tmp/band2.webp public/assets/images/die-katzen-vom-katzenbuckel-die-spur-der-sieben-schlaege.webp
           cp /tmp/band3.webp public/assets/images/die-katzen-vom-katzenbuckel-die-verschwundene-schulgeschichte.webp
