@@ -1777,3 +1777,32 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 @media(max-width:560px){
   .home-world-covers.home-world-covers-four{gap:12px 16px}
 }
+
+
+/* Katzenbuckel: alle vier Bände auf Smartphones ohne seitliches Wischen sichtbar */
+@media (max-width:560px){
+  .series-theme-katzenbuckel .series-mini-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    justify-content:center;
+    gap:28px 16px;
+    overflow:visible;
+    max-width:500px;
+    margin:0 auto;
+    padding:4px 0 16px;
+    scroll-snap-type:none;
+  }
+  .series-theme-katzenbuckel .series-mini-book{
+    flex:none;
+    min-width:0;
+    scroll-snap-align:none;
+  }
+  .series-theme-katzenbuckel .series-mini-cover img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+  .series-theme-katzenbuckel .series-mini-book h3{
+    font-size:1.05rem;
+  }
+}
