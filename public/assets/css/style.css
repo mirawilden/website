@@ -1775,7 +1775,8 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   max-width:185px;
   transform:none;
 }
-.home-world-covers.home-world-covers-four a:nth-child(2){
+.home-world-covers.home-world-covers-four a:nth-child(2),
+.home-world-covers.home-world-covers-four a:nth-child(4){
   transform:translateY(-14px);
 }
 .home-world-covers.home-world-covers-four img{
@@ -1787,7 +1788,8 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 }
 @media(max-width:560px){
   .home-world-covers.home-world-covers-four{gap:8px}
-  .home-world-covers.home-world-covers-four a:nth-child(2){transform:translateY(-8px)}
+  .home-world-covers.home-world-covers-four a:nth-child(2),
+  .home-world-covers.home-world-covers-four a:nth-child(4){transform:translateY(-8px)}
 }
 
 /* Nur auf Smartphones: dezenter Hinweis auf das seitlich wischbare Cover-Karussell. */
