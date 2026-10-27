@@ -1803,17 +1803,50 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     letter-spacing:.02em;
   }
 }
-
-/* Katzenbuckel-Reihenseite: Band 2 und 4 versetzt wie die Cover auf der Startseite. */
-.series-theme-katzenbuckel .series-mini-grid > .series-mini-book:nth-child(2),
-.series-theme-katzenbuckel .series-mini-grid > .series-mini-book:nth-child(4){
+/* Katzenbuckel-Reihenseite: konsistente Viererreihe und Coverversatz.
+   Nur die Cover werden angehoben, nicht Bandnummer, Titel oder Beschreibung. */
+@media (min-width:851px){
+  .series-theme-katzenbuckel .series-mini-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,190px));
+    justify-content:center;
+  }
+}
+@media (min-width:561px) and (max-width:850px){
+  .series-theme-katzenbuckel .series-mini-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    justify-content:center;
+  }
+}
+.series-theme-katzenbuckel .series-mini-grid > .series-mini-book{
+  min-width:0;
+  transform:none;
+}
+.series-theme-katzenbuckel .series-mini-cover img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:5/8;
+  object-fit:contain;
+}
+.series-theme-katzenbuckel .series-mini-book:nth-child(2) .series-mini-cover,
+.series-theme-katzenbuckel .series-mini-book:nth-child(4) .series-mini-cover{
   transform:translateY(-14px);
 }
 @media(max-width:560px){
-  /* Der obere Abstand hält versetzte Cover im wischbaren Bereich sichtbar. */
-  .series-theme-katzenbuckel .series-mini-grid{padding-top:16px}
-  .series-theme-katzenbuckel .series-mini-grid > .series-mini-book:nth-child(2),
-  .series-theme-katzenbuckel .series-mini-grid > .series-mini-book:nth-child(4){
+  .series-theme-katzenbuckel .series-mini-grid{
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content:flex-start;
+    overflow-x:auto;
+    padding-top:20px;
+  }
+  .series-theme-katzenbuckel .series-mini-grid > .series-mini-book{
+    flex:0 0 min(170px,58vw);
+  }
+  .series-theme-katzenbuckel .series-mini-book:nth-child(2) .series-mini-cover,
+  .series-theme-katzenbuckel .series-mini-book:nth-child(4) .series-mini-cover{
     transform:translateY(-8px);
   }
 }
