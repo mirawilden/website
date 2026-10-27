@@ -1753,34 +1753,31 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
 @media (min-width:851px){.series-theme-katzenbuckel .series-mini-grid{grid-template-columns:repeat(4,minmax(0,190px));gap:36px 34px}}
 @media (min-width:561px) and (max-width:850px){.series-theme-katzenbuckel .series-mini-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 15px}}
 
-/* Katzenbuckel-Cover auf Startseite und Buchwelten: einreihiges, wischbares Karussell. */
+/* Katzenbuckel: gleiche kompakte Coverdarstellung wie bei den anderen Buchwelten. 
+   Vier Cover bleiben nebeneinander und umbrechen auch auf kleinen Displays nicht. */
 .home-world-covers.home-world-covers-four{
   display:flex;
   flex-wrap:nowrap;
   align-items:center;
-  justify-content:flex-start;
+  justify-content:center;
   gap:16px;
   width:100%;
-  max-width:100%;
+  max-width:620px;
   min-width:0;
-  overflow-x:auto;
-  overflow-y:hidden;
-  -webkit-overflow-scrolling:touch;
-  overscroll-behavior-inline:contain;
-  scroll-snap-type:x mandatory;
-  scroll-padding-inline:6px;
-  padding:16px 6px 20px;
+  overflow:visible;
+  padding:0;
 }
 .home-world-covers.home-world-covers-four a{
   display:block;
-  flex:0 0 clamp(115px,30%,148px);
-  min-width:0;
-  max-width:none;
+  flex:1 1 0;
   width:auto;
-  scroll-snap-align:start;
+  min-width:0;
+  max-width:185px;
   transform:none;
 }
-.home-world-covers.home-world-covers-four a:nth-child(2){transform:none}
+.home-world-covers.home-world-covers-four a:nth-child(2){
+  transform:translateY(-14px);
+}
 .home-world-covers.home-world-covers-four img{
   display:block;
   width:100%;
@@ -1788,14 +1785,9 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
   aspect-ratio:5/8;
   object-fit:contain;
 }
-.home-covers-swipe-hint{
-  font-size:.86rem;
-  color:var(--muted);
-  margin:12px 0 0;
-}
 @media(max-width:560px){
-  .home-world-covers.home-world-covers-four{gap:12px}
-  .home-world-covers.home-world-covers-four a{flex:0 0 min(40vw,155px)}
+  .home-world-covers.home-world-covers-four{gap:8px}
+  .home-world-covers.home-world-covers-four a:nth-child(2){transform:translateY(-8px)}
 }
 
 /* Nur auf Smartphones: dezenter Hinweis auf das seitlich wischbare Cover-Karussell. */
