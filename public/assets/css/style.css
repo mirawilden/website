@@ -1803,3 +1803,17 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     letter-spacing:.02em;
   }
 }
+
+/* Katzenbuckel-Reihenseite: Band 2 und 4 versetzt wie die Cover auf der Startseite. */
+.series-theme-katzenbuckel .series-mini-grid > .series-mini-book:nth-child(2),
+.series-theme-katzenbuckel .series-mini-grid > .series-mini-book:nth-child(4){
+  transform:translateY(-14px);
+}
+@media(max-width:560px){
+  /* Der obere Abstand hält versetzte Cover im wischbaren Bereich sichtbar. */
+  .series-theme-katzenbuckel .series-mini-grid{padding-top:16px}
+  .series-theme-katzenbuckel .series-mini-grid > .series-mini-book:nth-child(2),
+  .series-theme-katzenbuckel .series-mini-grid > .series-mini-book:nth-child(4){
+    transform:translateY(-8px);
+  }
+}
