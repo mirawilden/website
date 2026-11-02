@@ -1864,3 +1864,35 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     gap:28px 22px;
   }
 }
+
+/* Kinderbuchcover auf Start- und Bücherseite: fünf Bände als ruhige, wischbare Reihe. */
+.home-world-covers.home-world-covers-kinder{
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  flex-wrap:nowrap;
+  gap:14px;
+  width:100%;
+  min-width:0;
+  overflow-x:auto;
+  scroll-snap-type:x proximity;
+  scrollbar-width:thin;
+  padding:18px 2px 16px;
+}
+.home-world-covers.home-world-covers-kinder a,
+.home-world-covers.home-world-covers-kinder a:nth-child(2){
+  display:block;
+  flex:0 0 clamp(105px,29%,158px);
+  max-width:158px;
+  min-width:0;
+  scroll-snap-align:start;
+  transform:none;
+}
+@media(max-width:560px){
+  .home-world-covers.home-world-covers-kinder{
+    gap:10px;
+  }
+  .home-world-covers.home-world-covers-kinder a{
+    flex-basis:clamp(100px,36%,145px);
+  }
+}
