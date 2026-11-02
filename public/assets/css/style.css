@@ -1850,3 +1850,17 @@ p{margin:.2em 0 1.15em}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto
     transform:translateY(-8px);
   }
 }
+
+/* Kinderbücher: fünf Cover in der Serienübersicht, mobil weiterhin wischbar. */
+@media (min-width:851px){
+  .series-theme-kinder .series-mini-grid{
+    grid-template-columns:repeat(5,minmax(0,178px));
+    gap:28px;
+  }
+}
+@media (min-width:561px) and (max-width:850px){
+  .series-theme-kinder .series-mini-grid{
+    grid-template-columns:repeat(3,minmax(0,180px));
+    gap:28px 22px;
+  }
+}
